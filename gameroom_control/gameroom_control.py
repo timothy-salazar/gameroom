@@ -139,12 +139,15 @@ def light_controls():
             new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
             new_colors = new_colors.astype('int')
             assert (np.all(new_colors<256) and np.all(new_colors>=0))
-            # pi1.set_PWM_dutycycle(5,new_colors[0])
-            # pi1.set_PWM_dutycycle(13,new_colors[1])
-            # pi1.set_PWM_dutycycle(26,new_colors[2])
-            # pi1.set_PWM_dutycycle(17,new_colors[0])
-            # pi1.set_PWM_dutycycle(22,new_colors[1])
-            # pi1.set_PWM_dutycycle(18,new_colors[2])
+            r = request.form['mode']
+            if (r=='ceiling') or (r=='both'):
+                pi1.set_PWM_dutycycle(5,new_colors[0])
+                pi1.set_PWM_dutycycle(13,new_colors[1])
+                pi1.set_PWM_dutycycle(26,new_colors[2])
+            if (r=='table') or (r=='both'):
+                pi1.set_PWM_dutycycle(17,new_colors[0])
+                pi1.set_PWM_dutycycle(22,new_colors[1])
+                pi1.set_PWM_dutycycle(18,new_colors[2])
             print(request.form)
         except (ValueError,AssertionError):
             flash('You need to type a value between 0 and 255 for all boxes')

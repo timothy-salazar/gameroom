@@ -10,17 +10,17 @@
 					<dl>
 						Red Value:
 						<div class="slidecontainer">
-							<dd><input type="range" name="red" min="0" max="255" value="0" class="slider" id="red_range">
+							<dd><input type="range" name="red" min="0" max="255" value=r_value class="slider" id="red_range">
 							Value: <span id="red_output"></span>
 						</div>
 						Green Value:
 						<div class="slidecontainer">
-							<dd><input type="range" name="green" min="0" max="255" value="0" class="slider" id="green_range">
+							<dd><input type="range" name="green" min="0" max="255" value=g_value class="slider" id="green_range">
 							Value: <span id="green_output"></span>
 						</div>
 						Blue Value:
 						<div class="slidecontainer">
-							<dd><input type="range" name="blue" min="0" max="255" value="0" class="slider" id="blue_range">
+							<dd><input type="range" name="blue" min="0" max="255" value=b_value class="slider" id="blue_range">
 							Value: <span id="blue_output"></span>
 						</div>
 						<dd><input type="submit" value="Change" id="color_submit">
@@ -90,7 +90,6 @@
 				var otherButton = document.getElementById(outlet_id + 'on');
 				outletButton.style = "border: 4px solid #FF0000;"
 				otherButton.style = ";"
-
 			}
 			function myFunction() {
 				var canvas = document.getElementById("my_canvas");
