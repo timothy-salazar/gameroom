@@ -153,7 +153,7 @@ def light_controls():
         except (ValueError,AssertionError):
             flash('You need to type a value between 0 and 255 for all boxes')
             #return render_template('light_adjust.html',l_mode='change_both')
-    return render_template('light_adjust.html')
+    return render_template('light_adjust.html',l_mode='change_both')
 
 @app.route('/add', methods=['POST'])
 def add_entry():
