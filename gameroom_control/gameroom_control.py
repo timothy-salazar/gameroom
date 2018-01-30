@@ -145,7 +145,7 @@ def light_controls():
             # pi1.set_PWM_dutycycle(17,new_colors[0])
             # pi1.set_PWM_dutycycle(22,new_colors[1])
             # pi1.set_PWM_dutycycle(18,new_colors[2])
-            print(new_colors)
+            print(request.form)
         except (ValueError,AssertionError):
             flash('You need to type a value between 0 and 255 for all boxes')
             #return render_template('light_adjust.html',l_mode='change_both')
