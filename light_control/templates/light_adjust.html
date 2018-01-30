@@ -4,109 +4,26 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	{% if session.logged_in %}
 		{% if l_mode %}
-
-			<!--<div class="slidecontainer">
-			  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-			  <p>Value: <span id="demo"></span></p>
-			</div>-->
-
-
 			<div class="w3-container w3-cell">
 				<form action="{{ url_for(l_mode) }}" method="post" class="light_control" autocomplete="off" id="form1">
-					<!--Ceiling: <input type="radio" name="mode" value="ceiling" checked>
-					Table: <input type="radio" name="mode" value="table">
-					Both: <input type="radio" name="mode" value="both">-->
 					<dl>
 						Red Value:
 						<div class="slidecontainer">
 							<dd><input type="range" name="red" min="0" max="255" value="0" class="slider" id="red_range">
 							Value: <span id="red_output"></span>
 						</div>
-						<!--
-						<script>
-						var red_slider = document.getElementById("red_range");
-						var red_output = document.getElementById("red_output");
-						red_output.innerHTML = red_slider.value;
-						red_slider.oninput = function() {
-						  red_output.innerHTML = this.value;
-						}
-						</script>
-						Ceiling: <input type="radio" name="mode" value="ceiling" checked>
-						Table: <input type="radio" name="mode" value="table">
-						Both: <input type="radio" name="mode" value="both">
-						-->
 						Green Value:
 						<div class="slidecontainer">
 							<dd><input type="range" name="green" min="0" max="255" value="0" class="slider" id="green_range">
 							Value: <span id="green_output"></span>
 						</div>
-					<!--
-						<script>
-						var green_slider = document.getElementById("green_range");
-						var green_output = document.getElementById("green_output");
-						green_output.innerHTML = green_slider.value;
-						green_slider.oninput = function() {
-						  green_output.innerHTML = this.value;
-						}
-					</script>
-					-->
 						Blue Value:
 						<div class="slidecontainer">
 							<dd><input type="range" name="blue" min="0" max="255" value="0" class="slider" id="blue_range">
 							Value: <span id="blue_output"></span>
 						</div>
-						<!--
-						<script>
-						var blue_slider = document.getElementById("blue_range");
-						var blue_output = document.getElementById("blue_output");
-						blue_output.innerHTML = blue_slider.value;
-						blue_slider.oninput = function() {
-						  blue_output.innerHTML = this.value;
-						}
-					</script>
-					-->
-
-		<!--				<script>
-						var red_slider = document.getElementById("red_range");
-						var red_output = document.getElementById("red_output");
-						var green_slider = document.getElementById("green_range");
-						var green_output = document.getElementById("green_output");
-						var blue_slider = document.getElementById("blue_range");
-						var blue_output = document.getElementById("blue_output");
-						var color_canvas = document.getElementByID("my_canvas");
-						red_output.innerHTML = red_slider.value;
-						green_output.innerHTML = green_slider.value;
-						blue_output.innerHTML = blue_slider.value;
-						red_slider.oninput = function() {
-							red_output.innerHTML = this.value;
-							/*my_canvas.style.backgroundColor="rgb("+red_output+","+green_output+","+blue_output+")"
-							*/
-						}
-						blue_slider.oninput = function() {
-							blue_output.innerHTML = this.value;
-						}
-						green_slider.oninput = function() {
-						  green_output.innerHTML = this.value;
-						}
-					</script>-->
 						<dd><input type="submit" value="Change" id="color_submit">
 					</dl>
-	<!--
-		style="background-color:rgb(255, 0, 0);"
-		<datalist id="tickmarks">
-					  <option value="0" label="0%">
-					  <option value="10">
-					  <option value="20">
-					  <option value="30">
-					  <option value="40">
-					  <option value="50" label="50%">
-					  <option value="60">
-					  <option value="70">
-					  <option value="80">
-					  <option value="90">
-					  <option value="100" label="100%">
-					</datalist>
-					-->
 				</form>
 			</div>
 			<div class="w3-container w3-cell">
@@ -119,13 +36,6 @@
 					style="border:1px solid #000000;">
 					</canvas>
 			</div>
-			<form action="{{ url_for('color_wheel') }}" method="post" class="light_control" autocomplete="off">
-  			Ceiling:
-  			<input type="color" name="ceiling" onclick="submit">
-				Table:
-				<input type="color" name="table">
-				<dd><input type='submit' value="Change">
-			</form>
 			<script>
 			var red_slider = document.getElementById("red_range");
 			var red_output = document.getElementById("red_output");
@@ -133,7 +43,6 @@
 			var green_output = document.getElementById("green_output");
 			var blue_slider = document.getElementById("blue_range");
 			var blue_output = document.getElementById("blue_output");
-
 			red_output.innerHTML = red_slider.value;
 			green_output.innerHTML = green_slider.value;
 			blue_output.innerHTML = blue_slider.value;
