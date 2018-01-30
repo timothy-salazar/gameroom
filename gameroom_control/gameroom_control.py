@@ -2,11 +2,11 @@ import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
 render_template, flash
-#import RPi.GPIO as GPIO
-#import pigpio
+import RPi.GPIO as GPIO
+import pigpio
 import numpy as np
 import time
-#from light_control.transmitRF import transmit_code, transmit_code_et
+from light_control.transmitRF import transmit_code, transmit_code_et
 
 app = Flask(__name__) # create the application instance :)
 app.config.from_object(__name__) # load config from this file , flaskr.py
@@ -19,7 +19,7 @@ USERNAME='admin',
 PASSWORD='default'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
-#pi1 = pigpio.pi()
+pi1 = pigpio.pi()
 
 def transmit_code(a):
     print(a)
@@ -134,12 +134,26 @@ def test():
     return render_template('light_adjust.html')
 
 
-@app.route('/')
-def show_entries():
-    #db = get_db()
-    #cur = db.execute('select title, text from entries order by id desc')
-    #entries = cur.fetchall()
-    return render_template('layout.html')
+@app.route('/', methods=['GET','POST'])
+def light_controls():
+    if request.method == 'POST':
+        if not session.get('logged_in'):
+            abort(401)
+        try:
+            new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
+            new_colors = new_colors.astype('int')
+            assert (np.all(new_colors<256) and np.all(new_colors>=0))
+            # pi1.set_PWM_dutycycle(5,new_colors[0])
+            # pi1.set_PWM_dutycycle(13,new_colors[1])
+            # pi1.set_PWM_dutycycle(26,new_colors[2])
+            # pi1.set_PWM_dutycycle(17,new_colors[0])
+            # pi1.set_PWM_dutycycle(22,new_colors[1])
+            # pi1.set_PWM_dutycycle(18,new_colors[2])
+            print(new_colors)
+        except (ValueError,AssertionError):
+            flash('You need to type a value between 0 and 255 for all boxes')
+            #return render_template('light_adjust.html',l_mode='change_both')
+    return render_template('light_adjust.html')
 
 @app.route('/add', methods=['POST'])
 def add_entry():
