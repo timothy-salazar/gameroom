@@ -21,118 +21,114 @@ PASSWORD='default'
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 pi1 = pigpio.pi()
 
-def transmit_code(a):
-    print(a)
+# def transmit_code(a):
+#     print(a)
+#
+# def transmit_code_et(a):
+#     print(a)
+#
+# @app.route('/a_on')
+# def a_on():
+#     transmit_code('a_on')
+#     return render_template('layout.html')
+#
+# @app.route('/a_off')
+# def a_off():
+#     transmit_code('a_off')
+#     return render_template('layout.html')
+#
+# @app.route('/red_on')
+# def red_on():
+#     transmit_code_et('two_on')
+#     return render_template('layout.html')
+#
+# @app.route('/red_off')
+# def red_off():
+#     transmit_code_et('two_off')
+#     return render_template('layout.html')
 
-def transmit_code_et(a):
-    print(a)
+# @app.route('/change_ceiling',methods=['GET','POST'])
+# def change_ceiling():
+#     if request.method == 'POST':
+#         if not session.get('logged_in'):
+#             abort(401)
+#         try:
+#             new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
+#             new_colors = new_colors.astype('int')
+#             assert np.all(new_colors<256)
+#             assert np.all(new_colors>=0)
+#             # pi1.set_PWM_dutycycle(5,new_colors[0])
+#             # pi1.set_PWM_dutycycle(13,new_colors[1])
+#             # pi1.set_PWM_dutycycle(26,new_colors[2])
+#             print(new_colors)
+#         except (ValueError,AssertionError):
+#             flash('You need to type a value between 0 and 255 for all boxes')
+#     return render_template('light_adjust.html',l_mode = 'change_ceiling')
 
-@app.route('/a_on')
-def a_on():
-    transmit_code('a_on')
-    return render_template('layout.html')
+# @app.route('/color_wheel',methods=['GET','POST'])
+# def color_wheel():
+#     if request.method == 'POST':
+#         if not session.get('logged_in'):
+#             abort(401)
+#         try:
+#             print(request.form)
+#             print(len(request.form))
+#             for i in request.form.items():
+#                 print(i)
+#             h = request.form['ceiling'].lstrip('#')
+#             print(print('RGB =', tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))))
+#             h = request.form['table'].lstrip('#')
+#             print(print('RGB =', tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))))
+#             # new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
+#             # new_colors = new_colors.astype('int')
+#             # assert np.all(new_colors<256)
+#             # assert np.all(new_colors>=0)
+#             # pi1.set_PWM_dutycycle(5,new_colors[0])
+#             # pi1.set_PWM_dutycycle(13,new_colors[1])
+#             # pi1.set_PWM_dutycycle(26,new_colors[2])
+#             #print(new_colors)
+#             return render_template('light_adjust.html',l_mode = 'change_ceiling')
+#         except (ValueError,AssertionError):
+#             flash('You need to type a value between 0 and 255 for all boxes')
+#     return render_template('light_adjust.html',l_mode = 'change_ceiling')
 
-@app.route('/a_off')
-def a_off():
-    transmit_code('a_off')
-    return render_template('layout.html')
+# @app.route('/change_table',methods=['GET','POST'])
+# def change_table():
+#     if request.method == 'POST':
+#         if not session.get('logged_in'):
+#             abort(401)
+#             try:
+#                 new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
+#                 new_colors = new_colors.astype('int')
+#                 assert (np.all(new_colors<256) and np.all(new_colors>=0))
+#                 # pi1.set_PWM_dutycycle(17,new_colors[0])
+#                 # pi1.set_PWM_dutycycle(22,new_colors[1])
+#                 # pi1.set_PWM_dutycycle(18,new_colors[2])
+#                 print(new_colors)
+#             except (ValueError,AssertionError):
+#                 flash('You need to type a value between 0 and 255 for all boxes')
+#                 return render_template('light_adjust.html',l_mode='change_table')
 
-@app.route('/red_on')
-def red_on():
-    transmit_code_et('two_on')
-    return render_template('layout.html')
-
-@app.route('/red_off')
-def red_off():
-    transmit_code_et('two_off')
-    return render_template('layout.html')
-
-@app.route('/change_ceiling',methods=['GET','POST'])
-def change_ceiling():
-    if request.method == 'POST':
-        if not session.get('logged_in'):
-            abort(401)
-        try:
-            new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
-            new_colors = new_colors.astype('int')
-            assert np.all(new_colors<256)
-            assert np.all(new_colors>=0)
-            # pi1.set_PWM_dutycycle(5,new_colors[0])
-            # pi1.set_PWM_dutycycle(13,new_colors[1])
-            # pi1.set_PWM_dutycycle(26,new_colors[2])
-            print(new_colors)
-        except (ValueError,AssertionError):
-            flash('You need to type a value between 0 and 255 for all boxes')
-    return render_template('light_adjust.html',l_mode = 'change_ceiling')
-
-@app.route('/color_wheel',methods=['GET','POST'])
-def color_wheel():
-    if request.method == 'POST':
-        if not session.get('logged_in'):
-            abort(401)
-        try:
-            print(request.form)
-            print(len(request.form))
-            for i in request.form.items():
-                print(i)
-            h = request.form['ceiling'].lstrip('#')
-            print(print('RGB =', tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))))
-            h = request.form['table'].lstrip('#')
-            print(print('RGB =', tuple(int(h[i:i+2], 16) for i in (0, 2 ,4))))
-            # new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
-            # new_colors = new_colors.astype('int')
-            # assert np.all(new_colors<256)
-            # assert np.all(new_colors>=0)
-            # pi1.set_PWM_dutycycle(5,new_colors[0])
-            # pi1.set_PWM_dutycycle(13,new_colors[1])
-            # pi1.set_PWM_dutycycle(26,new_colors[2])
-            #print(new_colors)
-            return render_template('light_adjust.html',l_mode = 'change_ceiling')
-        except (ValueError,AssertionError):
-            flash('You need to type a value between 0 and 255 for all boxes')
-    return render_template('light_adjust.html',l_mode = 'change_ceiling')
-
-@app.route('/change_table',methods=['GET','POST'])
-def change_table():
-    if request.method == 'POST':
-        if not session.get('logged_in'):
-            abort(401)
-            try:
-                new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
-                new_colors = new_colors.astype('int')
-                assert (np.all(new_colors<256) and np.all(new_colors>=0))
-                # pi1.set_PWM_dutycycle(17,new_colors[0])
-                # pi1.set_PWM_dutycycle(22,new_colors[1])
-                # pi1.set_PWM_dutycycle(18,new_colors[2])
-                print(new_colors)
-            except (ValueError,AssertionError):
-                flash('You need to type a value between 0 and 255 for all boxes')
-                return render_template('light_adjust.html',l_mode='change_table')
-
-@app.route('/change_both',methods=['GET','POST'])
-def change_both():
-    if request.method == 'POST':
-        if not session.get('logged_in'):
-            abort(401)
-            try:
-                new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
-                new_colors = new_colors.astype('int')
-                assert (np.all(new_colors<256) and np.all(new_colors>=0))
-                # pi1.set_PWM_dutycycle(5,new_colors[0])
-                # pi1.set_PWM_dutycycle(13,new_colors[1])
-                # pi1.set_PWM_dutycycle(26,new_colors[2])
-                # pi1.set_PWM_dutycycle(17,new_colors[0])
-                # pi1.set_PWM_dutycycle(22,new_colors[1])
-                # pi1.set_PWM_dutycycle(18,new_colors[2])
-                print(new_colors)
-            except (ValueError,AssertionError):
-                flash('You need to type a value between 0 and 255 for all boxes')
-                return render_template('light_adjust.html',l_mode='change_both')
-
-@app.route('/test',methods=['GET','POST'])
-def test():
-    return render_template('light_adjust.html')
-
+# @app.route('/change_both',methods=['GET','POST'])
+# def change_both():
+#     if request.method == 'POST':
+#         if not session.get('logged_in'):
+#             abort(401)
+#             try:
+#                 new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
+#                 new_colors = new_colors.astype('int')
+#                 assert (np.all(new_colors<256) and np.all(new_colors>=0))
+#                 # pi1.set_PWM_dutycycle(5,new_colors[0])
+#                 # pi1.set_PWM_dutycycle(13,new_colors[1])
+#                 # pi1.set_PWM_dutycycle(26,new_colors[2])
+#                 # pi1.set_PWM_dutycycle(17,new_colors[0])
+#                 # pi1.set_PWM_dutycycle(22,new_colors[1])
+#                 # pi1.set_PWM_dutycycle(18,new_colors[2])
+#                 print(new_colors)
+#             except (ValueError,AssertionError):
+#                 flash('You need to type a value between 0 and 255 for all boxes')
+#                 return render_template('light_adjust.html',l_mode='change_both')
+#
 
 @app.route('/', methods=['GET','POST'])
 def light_controls():
