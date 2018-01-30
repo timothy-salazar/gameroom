@@ -1,0 +1,21 @@
+<!doctype html>
+<title>Gameroom Light Controls</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>Gameroom Light Controls</h1>
+  <div class=metanav>
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">log in</a>
+  {% else %}
+    <p><a href="{{ url_for('logout') }}">log out</a></p>
+	<p><a href="{{ url_for('a_on') }}">Rock Green Light On</a>
+	<a href="{{ url_for('a_off') }}">Rock Green Light Off</a></p>
+	<p><a href="{{ url_for('red_on') }}">Red Neon On</a>
+	<a href="{{ url_for('red_off') }}">Red Neon Off</a></p>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

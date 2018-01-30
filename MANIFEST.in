@@ -1,3 +1,3 @@
-graft light_control/templates
-graft light_control/static
-include light_control/schema.sql
+graft gameroom_control/templates
+graft gameroom_control/static
+include gameroom_control/schema.sql
