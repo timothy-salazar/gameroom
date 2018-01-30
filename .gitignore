@@ -1,0 +1,4 @@
+gameroom_control.egg-info/
+venv/
+__pycache__/
+light_control/
