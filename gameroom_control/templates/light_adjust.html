@@ -64,7 +64,7 @@
 			red_output.innerHTML = red_slider.value;
 			green_output.innerHTML = green_slider.value;
 			blue_output.innerHTML = blue_slider.value;
-			red_slider.oninput = function() {
+			red_slider.onchange = function() {
 				red_output.innerHTML = this.value;
 				myFunction()
 			}
