@@ -1,0 +1,15 @@
+MANIFEST.in
+light_control/__init__.py
+light_control/light_control.py
+light_control/schema.sql
+light_control/transmitRF.py
+light_control.egg-info/PKG-INFO
+light_control.egg-info/SOURCES.txt
+light_control.egg-info/dependency_links.txt
+light_control.egg-info/requires.txt
+light_control.egg-info/top_level.txt
+light_control/static/style.css
+light_control/templates/layout.html
+light_control/templates/light_adjust.html
+light_control/templates/login.html
+light_control/templates/show_entries.html

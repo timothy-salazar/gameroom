@@ -1,0 +1,3 @@
+graft light_control/templates
+graft light_control/static
+include light_control/schema.sql
