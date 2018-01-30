@@ -132,13 +132,13 @@ pi1 = pigpio.pi()
 @app.route('/a_on')
 def a_on():
     transmit_code('a_on')
-    return render_template('layout.html')
+    return render_template('light_adjust.html',l_mode='light_controls')
 
 @app.route('/a_off')
 def a_off():
     transmit_code('a_off')
-    return render_template('layout.html')
-    
+    return render_template('light_adjust.html',l_mode='light_controls')
+
 @app.route('/', methods=['GET','POST'])
 def light_controls():
     if request.method == 'POST':
