@@ -38,6 +38,18 @@
 						</canvas>
 					</dl>
 			</div>
+			<h2>Outlet Controls</h2>
+			<dl>
+				Outlet 1
+				<button type="submit" onclick="button_on('outlet1')" id="outlet1on">On</button>
+				<button onclick="button_off('outlet1')" id='outlet1off'>Off</button>
+				Outlet 2
+				<button onclick="button_on('outlet2')" id="outlet2on">On</button>
+				<button onclick="button_off('outlet2')" id='outlet2off'>Off</button>
+				Outlet 3
+				<button onclick="button_on('outlet3')" id="outlet3on">On</button>
+				<button onclick="button_off('outlet3')" id='outlet3off'>Off</button>
+			</dl>
 			<script>
 			var red_slider = document.getElementById("red_range");
 			var red_output = document.getElementById("red_output");
@@ -66,6 +78,19 @@
 			ceiling_radio.oninput = function() {
 				window.alert('boyo')
 			}
+			function button_on(outlet_id) {
+				var outletButton = document.getElementById(outlet_id + 'on');
+				var otherButton = document.getElementById(outlet_id + 'off');
+				outletButton.style = "border: 4px solid #4CAF50;"
+				otherButton.style = ";"
+			}
+			function button_off(outlet_id) {
+				var outletButton = document.getElementById(outlet_id + 'off');
+				var otherButton = document.getElementById(outlet_id + 'on');
+				outletButton.style = "border: 4px solid #FF0000;"
+				otherButton.style = ";"
+
+			}
 			function myFunction() {
 				var canvas = document.getElementById("my_canvas");
 				var ctx = canvas.getContext("2d");
@@ -77,4 +102,4 @@
 			</script>
 		{% endif %}
 	{% endif %}
-	{% endblock %}
+{% endblock %}
