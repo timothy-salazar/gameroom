@@ -141,6 +141,9 @@ def a_off():
 
 @app.route('/', methods=['GET','POST'])
 def light_controls():
+    r = 0
+    g = 0
+    b = 0
     if request.method == 'POST':
         if not session.get('logged_in'):
             abort(401)
@@ -153,15 +156,21 @@ def light_controls():
                 pi1.set_PWM_dutycycle(5,new_colors[0])
                 pi1.set_PWM_dutycycle(13,new_colors[1])
                 pi1.set_PWM_dutycycle(26,new_colors[2])
+                r = pi1.get_PWM_dutycycle(5)
+                g = pi1.get_PWM_dutycycle(13)
+                b = pi1.get_PWM_dutycycle(26)
             if (r=='table') or (r=='both'):
                 pi1.set_PWM_dutycycle(17,new_colors[0])
                 pi1.set_PWM_dutycycle(22,new_colors[1])
                 pi1.set_PWM_dutycycle(18,new_colors[2])
+                r = pi1.get_PWM_dutycycle(17)
+                g = pi1.get_PWM_dutycycle(22)
+                b = pi1.get_PWM_dutycycle(28)
             print(request.form)
         except (ValueError,AssertionError):
             flash('You need to type a value between 0 and 255 for all boxes')
             #return render_template('light_adjust.html',l_mode='change_both')
-    return render_template('light_adjust.html',l_mode='light_controls')
+    return render_template('light_adjust.html',l_mode='light_controls',r_value=r,g_value=g,b_value=b)
 
 @app.route('/add', methods=['POST'])
 def add_entry():
