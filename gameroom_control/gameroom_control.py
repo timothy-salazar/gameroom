@@ -129,7 +129,16 @@ pi1 = pigpio.pi()
 #                 flash('You need to type a value between 0 and 255 for all boxes')
 #                 return render_template('light_adjust.html',l_mode='change_both')
 #
+@app.route('/a_on')
+def a_on():
+    transmit_code('a_on')
+    return render_template('layout.html')
 
+@app.route('/a_off')
+def a_off():
+    transmit_code('a_off')
+    return render_template('layout.html')
+    
 @app.route('/', methods=['GET','POST'])
 def light_controls():
     if request.method == 'POST':
