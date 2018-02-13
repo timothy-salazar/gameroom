@@ -61,7 +61,12 @@
 			<input type="submit" name="four" value="Off" id='outlet4off'>
 		</form>
 	</div>
-
+{% if outlet_vals %}
+	{% for val in outlet_vals %}
+		button_on(val[0])
+		button_off(val[1])
+	{% endfor %}
+{% endif %}
 	<script>
 	var red_slider = document.getElementById("red_range");
 	var red_output = document.getElementById("red_output");
@@ -87,9 +92,6 @@
 		green_output.innerHTML = this.value;
 		myFunction()
 	}
-	ceiling_radio.oninput = function() {
-		window.alert('boyo')
-	}
 	function button_on(outlet_id) {
 		var outletButton = document.getElementById(outlet_id + '_on');
 		var otherButton = document.getElementById(outlet_id + '_off');
@@ -113,4 +115,5 @@
 	}
 	myFunction()
 	</script>
+
 {% endblock %}
