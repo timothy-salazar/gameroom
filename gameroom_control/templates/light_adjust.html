@@ -10,17 +10,17 @@
 					<dl>
 						Red Value:
 						<div class="slidecontainer">
-							<dd><input type="range" name="red" min="0" max="255" value=r_value class="slider" id="red_range">
+							<dd><input type="range" name="red" min="0" max="255" value=0 class="slider" id="red_range">
 							Value: <span id="red_output"></span>
 						</div>
 						Green Value:
 						<div class="slidecontainer">
-							<dd><input type="range" name="green" min="0" max="255" value=g_value class="slider" id="green_range">
+							<dd><input type="range" name="green" min="0" max="255" value=0 class="slider" id="green_range">
 							Value: <span id="green_output"></span>
 						</div>
 						Blue Value:
 						<div class="slidecontainer">
-							<dd><input type="range" name="blue" min="0" max="255" value=b_value class="slider" id="blue_range">
+							<dd><input type="range" name="blue" min="0" max="255" value=0 class="slider" id="blue_range">
 							Value: <span id="blue_output"></span>
 						</div>
 						<dd><input type="submit" value="Change" id="color_submit">
@@ -40,17 +40,28 @@
 					</dl>
 			</div>
 			<h2>Outlet Controls</h2>
-			<dl>
-				Outlet 1
-				<button type="submit" onclick="button_on('outlet1')" id="outlet1on">On</button>
-				<button onclick="button_off('outlet1')" id='outlet1off'>Off</button>
-				Outlet 2
-				<button onclick="button_on('outlet2')" id="outlet2on">On</button>
-				<button onclick="button_off('outlet2')" id='outlet2off'>Off</button>
-				Outlet 3
-				<button onclick="button_on('outlet3')" id="outlet3on">On</button>
-				<button onclick="button_off('outlet3')" id='outlet3off'>Off</button>
-			</dl>
+			<div>
+				<form action="{{ url_for('outlet_2') }}" method="post" class="outlet_control" id="two_on">
+					Outlet 1
+					<input type="submit" name="two" value="On" id="outlet2on">
+					<input type="submit" name="two" value="Off" id='outlet2off'>
+				</form>
+			</div>
+			<div>
+				<form action="{{ url_for('outlet_3') }}" method="post" class="outlet_control" id="three_on">
+					Outlet 2
+					<input type="submit" name="three" value="On" id="outlet3on">
+					<input type="submit" name="three" value="Off" id='outlet3off'>
+				</form>
+			</div>
+			<div>
+				<form action="{{ url_for('outlet_4') }}" method="post" class="outlet_control" id="four_on">
+					Outlet 3
+					<input type="submit" name="four" value="On" id="outlet4on">
+					<input type="submit" name="four" value="Off" id='outlet4off'>
+				</form>
+			</div>
+
 			<script>
 			var red_slider = document.getElementById("red_range");
 			var red_output = document.getElementById("red_output");
