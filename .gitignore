@@ -1,6 +1,7 @@
 gameroom_control.egg-info/
 venv/
 __pycache__/
+gameroom_control/__pycache__
 light_control/
 .ipynb_checkpoints/
 light_controls/

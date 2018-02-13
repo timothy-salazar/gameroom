@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 
 
 
-def transmit_code_et(code):
+def transmit_outlet(code):
     '''Transmit a chosen code string using the GPIO transmitter'''
     code_dict = {'five_on':'0001000001110101000000110',
                 'five_off':'0001000001110101000011000',
@@ -18,20 +18,13 @@ def transmit_code_et(code):
                 'one_off': '0001000001010101001111000'}
     try:
         code = code_dict[code]
-        atomic_unit = 0.00073529
-        short_impulse = 0.00032027272727272774
-        short_sleep = 0.00041599999999999905
-        long_impulse =  0.00067212500000000041
-        long_sleep = .000051875000000000272
-        extended_delay = 0.00559200000
-
-#         short_impulse = 0.0005
-#         short_sleep = 0.0011
-#         long_impulse = 0.00125
-#         long_sleep = 0.00035
-#         extended_delay = 0.01130
-#         init_delay = 0.01125
-
+        
+        extended_delay = 0.00569055813953
+        short_sleep = 0.000571339403974
+        short_impulse = 0.000162708126036
+        long_impulse = 0.000512304038005
+        long_sleep = 0.000220728215768
+        
         NUM_ATTEMPTS = 4
         NUM_REPS = 4
         TRANSMIT_PIN = 27
