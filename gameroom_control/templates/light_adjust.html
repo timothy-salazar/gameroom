@@ -1,116 +1,112 @@
 {% extends "layout.html" %}
 {% block body %}
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	{% if session.logged_in %}
-		{% if l_mode %}
-			<h2>LED Controls</h2>
-			<div class="w3-container w3-cell">
-				<form action="{{ url_for(l_mode) }}" method="post" class="light_control" autocomplete="off" id="form1">
-					<dl>
-						Red Value:
-						<div class="slidecontainer">
-							<dd><input type="range" name="red" min="0" max="255" value=0 class="slider" id="red_range">
-							Value: <span id="red_output"></span>
-						</div>
-						Green Value:
-						<div class="slidecontainer">
-							<dd><input type="range" name="green" min="0" max="255" value=0 class="slider" id="green_range">
-							Value: <span id="green_output"></span>
-						</div>
-						Blue Value:
-						<div class="slidecontainer">
-							<dd><input type="range" name="blue" min="0" max="255" value=0 class="slider" id="blue_range">
-							Value: <span id="blue_output"></span>
-						</div>
-						<dd><input type="submit" value="Change" id="color_submit">
-					</dl>
-				</form>
-			</div>
-			<div class="w3-container w3-cell">
-					<dl>
-						<dd>Ceiling: <input type="radio" name="mode" value="ceiling" form="form1" id="ceiling_radio" checked >
-						<dd>Table: <input type="radio" name="mode" value="table" form="form1" id="table_radio">
-						<dd>Both: <input type="radio" name="mode" value="both" form="form1" id="both_radio">
-					</dl>
-					<dl>
-						<dd><canvas id="my_canvas" width="100" height="100"
-						style="border:1px solid #000000;">
-						</canvas>
-					</dl>
-			</div>
-			<h2>Outlet Controls</h2>
-			<div>
-				<form action="{{ url_for('outlet_2') }}" method="post" class="outlet_control" id="two_on">
-					Outlet 1
-					<input type="submit" name="two" value="On" id="outlet2on">
-					<input type="submit" name="two" value="Off" id='outlet2off'>
-				</form>
-			</div>
-			<div>
-				<form action="{{ url_for('outlet_3') }}" method="post" class="outlet_control" id="three_on">
-					Outlet 2
-					<input type="submit" name="three" value="On" id="outlet3on">
-					<input type="submit" name="three" value="Off" id='outlet3off'>
-				</form>
-			</div>
-			<div>
-				<form action="{{ url_for('outlet_4') }}" method="post" class="outlet_control" id="four_on">
-					Outlet 3
-					<input type="submit" name="four" value="On" id="outlet4on">
-					<input type="submit" name="four" value="Off" id='outlet4off'>
-				</form>
-			</div>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<h2>LED Controls</h2>
+	<div class="w3-container w3-cell">
+		<form action="{{ url_for(l_mode) }}" method="post" class="light_control" autocomplete="off" id="form1">
+			<dl>
+				Red Value:
+				<div class="slidecontainer">
+					<dd><input type="range" name="red" min="0" max="255" value=0 class="slider" id="red_range">
+					Value: <span id="red_output"></span>
+				</div>
+				Green Value:
+				<div class="slidecontainer">
+					<dd><input type="range" name="green" min="0" max="255" value=0 class="slider" id="green_range">
+					Value: <span id="green_output"></span>
+				</div>
+				Blue Value:
+				<div class="slidecontainer">
+					<dd><input type="range" name="blue" min="0" max="255" value=0 class="slider" id="blue_range">
+					Value: <span id="blue_output"></span>
+				</div>
+				<dd><input type="submit" value="Change" id="color_submit">
+			</dl>
+		</form>
+	</div>
+	<div class="w3-container w3-cell">
+			<dl>
+				<dd>Ceiling: <input type="radio" name="mode" value="ceiling" form="form1" id="ceiling_radio" checked >
+				<dd>Table: <input type="radio" name="mode" value="table" form="form1" id="table_radio">
+				<dd>Both: <input type="radio" name="mode" value="both" form="form1" id="both_radio">
+			</dl>
+			<dl>
+				<dd><canvas id="my_canvas" width="100" height="100"
+				style="border:1px solid #000000;">
+				</canvas>
+			</dl>
+	</div>
+	<h2>Outlet Controls</h2>
+	<div>
+		<form action="{{ url_for('outlet_2') }}" method="post" class="outlet_control" id="two_on">
+			Outlet 1
+			<input type="submit" name="two" value="On" id="outlet2on">
+			<input type="submit" name="two" value="Off" id='outlet2off'>
+		</form>
+	</div>
+	<div>
+		<form action="{{ url_for('outlet_3') }}" method="post" class="outlet_control" id="three_on">
+			Outlet 2
+			<input type="submit" name="three" value="On" id="outlet3on">
+			<input type="submit" name="three" value="Off" id='outlet3off'>
+		</form>
+	</div>
+	<div>
+		<form action="{{ url_for('outlet_4') }}" method="post" class="outlet_control" id="four_on">
+			Outlet 3
+			<input type="submit" name="four" value="On" id="outlet4on">
+			<input type="submit" name="four" value="Off" id='outlet4off'>
+		</form>
+	</div>
 
-			<script>
-			var red_slider = document.getElementById("red_range");
-			var red_output = document.getElementById("red_output");
-			var green_slider = document.getElementById("green_range");
-			var green_output = document.getElementById("green_output");
-			var blue_slider = document.getElementById("blue_range");
-			var blue_output = document.getElementById("blue_output");
-			var ceiling_radio = document.getElementById("ceiling_radio")
-			var table_radio = document.getElementById("table_radio")
-			var both_radio = document.getElementById("both_radio")
-			red_output.innerHTML = red_slider.value;
-			green_output.innerHTML = green_slider.value;
-			blue_output.innerHTML = blue_slider.value;
-			red_slider.onchange = function() {
-				red_output.innerHTML = this.value;
-				myFunction()
-			}
-			blue_slider.oninput = function() {
-				blue_output.innerHTML = this.value;
-				myFunction()
-			}
-			green_slider.oninput = function() {
-				green_output.innerHTML = this.value;
-				myFunction()
-			}
-			ceiling_radio.oninput = function() {
-				window.alert('boyo')
-			}
-			function button_on(outlet_id) {
-				var outletButton = document.getElementById(outlet_id + 'on');
-				var otherButton = document.getElementById(outlet_id + 'off');
-				outletButton.style = "border: 4px solid #4CAF50;"
-				otherButton.style = ";"
-			}
-			function button_off(outlet_id) {
-				var outletButton = document.getElementById(outlet_id + 'off');
-				var otherButton = document.getElementById(outlet_id + 'on');
-				outletButton.style = "border: 4px solid #FF0000;"
-				otherButton.style = ";"
-			}
-			function myFunction() {
-				var canvas = document.getElementById("my_canvas");
-				var ctx = canvas.getContext("2d");
-				var my_colors = 'rgb('+red_slider.value+','+green_slider.value+','+blue_slider.value+')';
-				ctx.fillStyle = my_colors;
-				ctx.fillRect(0,0,canvas.width,canvas.height);
-			}
-			myFunction()
-			</script>
-		{% endif %}
-	{% endif %}
+	<script>
+	var red_slider = document.getElementById("red_range");
+	var red_output = document.getElementById("red_output");
+	var green_slider = document.getElementById("green_range");
+	var green_output = document.getElementById("green_output");
+	var blue_slider = document.getElementById("blue_range");
+	var blue_output = document.getElementById("blue_output");
+	var ceiling_radio = document.getElementById("ceiling_radio")
+	var table_radio = document.getElementById("table_radio")
+	var both_radio = document.getElementById("both_radio")
+	red_output.innerHTML = red_slider.value;
+	green_output.innerHTML = green_slider.value;
+	blue_output.innerHTML = blue_slider.value;
+	red_slider.onchange = function() {
+		red_output.innerHTML = this.value;
+		myFunction()
+	}
+	blue_slider.oninput = function() {
+		blue_output.innerHTML = this.value;
+		myFunction()
+	}
+	green_slider.oninput = function() {
+		green_output.innerHTML = this.value;
+		myFunction()
+	}
+	ceiling_radio.oninput = function() {
+		window.alert('boyo')
+	}
+	function button_on(outlet_id) {
+		var outletButton = document.getElementById(outlet_id + 'on');
+		var otherButton = document.getElementById(outlet_id + 'off');
+		outletButton.style = "border: 4px solid #4CAF50;"
+		otherButton.style = ";"
+	}
+	function button_off(outlet_id) {
+		var outletButton = document.getElementById(outlet_id + 'off');
+		var otherButton = document.getElementById(outlet_id + 'on');
+		outletButton.style = "border: 4px solid #FF0000;"
+		otherButton.style = ";"
+	}
+	function myFunction() {
+		var canvas = document.getElementById("my_canvas");
+		var ctx = canvas.getContext("2d");
+		var my_colors = 'rgb('+red_slider.value+','+green_slider.value+','+blue_slider.value+')';
+		ctx.fillStyle = my_colors;
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+	}
+	myFunction()
+	</script>
 {% endblock %}
