@@ -21,7 +21,7 @@ PASSWORD='default'
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 pi1 = pigpio.pi()
 
-@app.route('/outlet')
+@app.route('/outlet',methods=['POST'])
 def outlet():
     code_dict = {1:['two_on','two_off'],2:['three_on','three_off'],3:['four_on','four_off']}
     out = [request.form['one'],request.form['two'],request.form['three']]
@@ -35,7 +35,7 @@ def outlet():
 
 @app.route('/a_on') # there's a seperate type of outlet control
 def a_on():         # with a different RF packet hooked up to the
-    transmit_code('a_on')   # power supply for the LEDs. 
+    transmit_code('a_on')   # power supply for the LEDs.
     return render_template('light_adjust.html',l_mode='light_controls')
 
 @app.route('/a_off')
