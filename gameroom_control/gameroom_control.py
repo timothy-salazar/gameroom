@@ -19,9 +19,7 @@ def outlet():
     for i in request.form.items():
         trans_code = '{}_{}'.format(i[0],i[1].lower())
         transmit_outlet(trans_code)
-        if i[1]=='On': outlet_vals = ['outlet_two',None]
-        else: outlet_vals = [None,'outlet_two']
-    return render_template('light_adjust.html',outlet_vals = outlet_vals)
+    return render_template('light_adjust.html',outlet_vals = 'outlet_two')
 
 
 @app.route('/', methods=['GET','POST'])

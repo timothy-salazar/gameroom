@@ -113,8 +113,10 @@
 	</script>
 {% if outlet_vals %}
 	{% for val in outlet_vals %}
-		button_on(val[0])
-		button_off(val[1])
+		<script>
+			var outletID = {{ outlet_vals }}
+			button_on(outletID)
+		</script>
 	{% endfor %}
 {% endif %}
 {% endblock %}
