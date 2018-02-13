@@ -6,3 +6,4 @@ I want a website to run on the Pi that can do the following:
 * Display the status of the LEDs running under the table and along the ceiling
 * Allows the user to change the color and intensity of the LEDs with an intuitive interface
 * Allows the user to turn the RF electrical outlets on or off
+# timothysalazar-anylocation-datascientist

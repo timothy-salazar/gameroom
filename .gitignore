@@ -1,5 +1,10 @@
 gameroom_control.egg-info/
-venv
 venv/
 __pycache__/
 gameroom_control/__pycache__
+light_control/
+.ipynb_checkpoints/
+light_controls/
+num_arr.pkl
+templates/
+frequencies.ipynb
