@@ -25,7 +25,6 @@ def outlet():
     for i in request.form.items():
         trans_code = '{}_{}'.format(i[0],i[1].lower())
         transmit_outlet(trans_code)
-    #return 'success'
     return render_template('light_adjust.html')
 
 @app.route('/a_on') # there's a seperate type of outlet control
@@ -44,8 +43,6 @@ def light_controls():
     g = 0
     b = 0
     if request.method == 'POST':
-        if not session.get('logged_in'):
-            abort(401)
         try:
             new_colors = np.array([request.form['red'],request.form['green'],request.form['blue']])
             new_colors = new_colors.astype('int')
