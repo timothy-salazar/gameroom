@@ -24,6 +24,7 @@ pi1 = pigpio.pi()
 @app.route('/outlet',methods=['POST'])
 def outlet():
     code_dict = {1:['two_on','two_off'],2:['three_on','three_off'],3:['four_on','four_off']}
+    print(request.form)
     out = [request.form['one'],request.form['two'],request.form['three']]
     on_arr = np.where([i=='on' for i in a])[0]
     off_arr = np.where([i=='off' for i in a])[0]
@@ -70,7 +71,6 @@ def light_controls():
                 r = pi1.get_PWM_dutycycle(17)
                 g = pi1.get_PWM_dutycycle(22)
                 b = pi1.get_PWM_dutycycle(26)
-            print(request.form)
         except (ValueError,AssertionError):
             flash('You need to type a value between 0 and 255 for all boxes')
     return render_template('light_adjust.html',l_mode='light_controls',r_value=r,g_value=g,b_value=b)
