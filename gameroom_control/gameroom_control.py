@@ -21,7 +21,7 @@ def outlet():
         transmit_outlet(trans_code)
         if i[1]=='On': outlet_vals = ['outlet_two',None]
         else: outlet_vals = [None,'outlet_two']
-    return render_template('light_adjust.html',)
+    return render_template('light_adjust.html',outlet_vals = outlet_vals)
 
 
 @app.route('/', methods=['GET','POST'])
