@@ -25,7 +25,7 @@ pi1 = pigpio.pi()
 def outlet():
     code_dict = {1:['two_on','two_off'],2:['three_on','three_off'],3:['four_on','four_off']}
     print(request.form)
-    print(request.form[0],request.form[1])
+    print(request.form.values())
     # out = [request.form['one'],request.form['two'],request.form['three']]
     # on_arr = np.where([i=='on' for i in a])[0]
     # off_arr = np.where([i=='off' for i in a])[0]
