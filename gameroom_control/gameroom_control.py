@@ -25,9 +25,10 @@ pi1 = pigpio.pi()
 def outlet():
     code_dict = {1:['two_on','two_off'],2:['three_on','three_off'],3:['four_on','four_off']}
     print(request.form)
-    out = [request.form['one'],request.form['two'],request.form['three']]
-    on_arr = np.where([i=='on' for i in a])[0]
-    off_arr = np.where([i=='off' for i in a])[0]
+    print(request.form['name'],request.form['value'])
+    # out = [request.form['one'],request.form['two'],request.form['three']]
+    # on_arr = np.where([i=='on' for i in a])[0]
+    # off_arr = np.where([i=='off' for i in a])[0]
     if len(on_arr)==1: # If we want to turn an outlet on...
         transmit_outlet(code_dict[on_arr][0])
     if len(off_arr)==1: # If we want to turn an outlet off...
