@@ -41,8 +41,10 @@
 	<div>
 		<form action="{{ url_for('outlet') }}" method="post" class="outlet_control" id="outlet_two">
 			Outlet 1
-			<input type="submit" name="two" value="On" id="outlet2on">
-			<input type="submit" name="two" value="Off" id='outlet2off'>
+			<button name = "two" value = "On" onclick="button_on('outlet_two')" id="outlet_two_on">On</button>
+			<button name = "two" value = "Off" onclick="button_off('outlet_two')" id='outlet_two_off'>Off</button>
+			<!-- <input type="submit" name="two" value="On" id="outlet2on">
+			<input type="submit" name="two" value="Off" id='outlet2off'> -->
 		</form>
 	</div>
 	<div>
@@ -89,16 +91,18 @@
 		window.alert('boyo')
 	}
 	function button_on(outlet_id) {
-		var outletButton = document.getElementById(outlet_id + 'on');
-		var otherButton = document.getElementById(outlet_id + 'off');
+		var outletButton = document.getElementById(outlet_id + '_on');
+		var otherButton = document.getElementById(outlet_id + '_off');
 		outletButton.style = "border: 4px solid #4CAF50;"
 		otherButton.style = ";"
+		document.getElementById(outlet_id).submit()
 	}
 	function button_off(outlet_id) {
-		var outletButton = document.getElementById(outlet_id + 'off');
-		var otherButton = document.getElementById(outlet_id + 'on');
+		var outletButton = document.getElementById(outlet_id + '_off');
+		var otherButton = document.getElementById(outlet_id + '_on');
 		outletButton.style = "border: 4px solid #FF0000;"
 		otherButton.style = ";"
+		document.getElementById(outlet_id).submit()
 	}
 	function myFunction() {
 		var canvas = document.getElementById("my_canvas");

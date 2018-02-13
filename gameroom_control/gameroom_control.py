@@ -25,7 +25,8 @@ def outlet():
     for i in request.form.items():
         trans_code = '{}_{}'.format(i[0],i[1].lower())
         transmit_outlet(trans_code)
-    return render_template('light_adjust.html',l_mode='light_controls')
+    return
+    # return render_template('light_adjust.html',l_mode='light_controls')
 
 @app.route('/a_on') # there's a seperate type of outlet control
 def a_on():         # with a different RF packet hooked up to the
