@@ -27,7 +27,7 @@ def transmit_outlet(code):
         
         NUM_ATTEMPTS = 4
         NUM_REPS = 4
-        TRANSMIT_PIN = 27
+        TRANSMIT_PIN = 24
 
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(TRANSMIT_PIN, GPIO.OUT)
